@@ -29,8 +29,6 @@ def test(qtd, X, weight, bias, y):
         print(f'    Real value of y: {y[i]}')   
         print(f'    Output value: {neuron_output_final}')
 
-        print(f'    >>> y: {y[i]}')
-
         new_y[i] = neuron_output_final
     
     return new_y
