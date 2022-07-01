@@ -7,11 +7,13 @@ from normalize_data import normalize
 from weight_raffle import weight_raffle, bias_raffle
 import matplotlib.pyplot as plt
 
-DATA =  'D:/Dropbox/IFAL-SI/8_Periodo/Sistemas de Apoio à Decisão/RNA_alagoas_housing2/housing_data.csv'
-
+DATA =  'D:/Dropbox/IFAL-SI/8_Periodo/Sistemas de Apoio à Decisão/Backpropagation-algorithm/housing_data.csv'
+# district_cod, area, iptu, condominium_value, bedrooms, bathrooms, value
 dataset = np.loadtxt(DATA, delimiter=',')
+# area, condominium_value
 X = dataset[:,1:3]
-y = dataset[:,5]
+# value
+y = dataset[:,6]
 #print(dataset)
 
 normalized = np.zeros((dataset.shape))
@@ -19,11 +21,11 @@ normalized = np.zeros((dataset.shape))
 new_data = normalize(dataset, normalized)
 X_normalized = new_data[:,1:3]
 y_normalized = new_data[:,5]
-#print(X)
+print(len(X))
 #print(y)
 
 # Quantidade de neurônios
-qtd = 30    
+qtd = 20   
 weight = weight_raffle(qtd)
 #print(f'Lista de pesos: {weight}')
 
@@ -32,8 +34,8 @@ bias = bias_raffle(qtd)
 
 count_epoch = 1
 # Quantidade de épocas
-epoch = 1000
-learning_rate = 0.3
+epoch = 100
+learning_rate = 0.4
 
 error_list = []
 
@@ -62,6 +64,8 @@ print(f'        >>> y previsto:  {y_desnormalized}')
 
 precos_previstos = y_desnormalized
 precos_reais = y
+print(len(error_list))
+print(error_list)
 
 #formatter = ('{:.0f}'.format())
 fig, ax = plt.subplots(ncols=2, nrows=1, figsize=(12, 6))
