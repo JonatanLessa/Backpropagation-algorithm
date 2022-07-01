@@ -11,7 +11,7 @@ def trainning_model(qtd, X_normalized, weight, bias, y_normalized, error_list, l
         output_neuron_input = 0
         p = 0
         print(f'{i+1}/{len(X_normalized)}')
-        print(f'Weight list: {weight}, Bias List: {bias}')
+        #print(f'Weight list: {weight}, Bias List: {bias}')
         for w in range(qtd-1): 
 
             # Cálculo do somatório das entradas nos neurônios da camada oculta
@@ -31,8 +31,7 @@ def trainning_model(qtd, X_normalized, weight, bias, y_normalized, error_list, l
         print(f'    >>> y_normalized: {y_normalized[i]}')
 
         # Cálculo do erro   
-        error = y_normalized[i] - neuron_output_final  
-        error_list.append(abs(error))     
+        error = y_normalized[i] - neuron_output_final   
        
         print(f'    >>> Erro : {error}')
 
@@ -44,7 +43,7 @@ def trainning_model(qtd, X_normalized, weight, bias, y_normalized, error_list, l
         for b in range(qtd-1):           
             weight_error.append(weight[q][0] * error)
             q += 1
-        print(f'Weight error list: {weight_error}')  
+        #print(f'Weight error list: {weight_error}')  
 
         r = 0
         for c in range(qtd-1): 
@@ -57,8 +56,8 @@ def trainning_model(qtd, X_normalized, weight, bias, y_normalized, error_list, l
         for e in range(qtd-1):
             bias[e][0] = bias[e][0] + learning_rate * weight_error[e] * (math.exp(-(neuron_output[e][0]))) / (1 + math.exp(-(neuron_output[e][0])))**2 * neuron_output[e][0]
         bias[-1][0] = bias[-1][0] + learning_rate * error * (math.exp(-(neuron_output[-1][0]))) / (1 + math.exp(-(neuron_output[-1][0])))**2 * neuron_output[-1][0]
-        print(f'Weight list: {weight}')
-        print(f'Bias list: {bias}')
+        #print(f'Weight list: {weight}')
+        #print(f'Bias list: {bias}')
     print('\n')    
-
+    error_list.append(abs(error)) 
     return weight, bias, error_list
